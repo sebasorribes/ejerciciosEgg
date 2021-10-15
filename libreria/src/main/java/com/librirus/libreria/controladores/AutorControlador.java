@@ -22,11 +22,22 @@ public class AutorControlador {
 	@Autowired
 	AutorServicio autorServicio;
 
+	/**
+	 * devuelve el html "agregar-autor" que contiene un form para colocar los datos del autor
+	 * @return
+	 */
 	@GetMapping("/agregar-autor")
 	public String formAutor() {
 		return "agregar-autor.html";
 	}
 
+	/**
+	 * recibe los datos del form para enviarlos al servicio y este se encargue de guardar el autor
+	 * en caso de un error muestra nuevamente la pagina con un mensaje de error
+	 * @param modelo
+	 * @param nombreEditorial
+	 * @return html
+	 */
 	@PostMapping("/registrar")
 	public String guardarAutor(ModelMap modelo, @RequestParam String nombreAutor) {
 		try {
@@ -38,6 +49,13 @@ public class AutorControlador {
 		return "redirect:/autores";
 	}
 	
+	/**
+	 * permite dar de baja el autor que se haya seleccionado(coloca el valor de alta en false)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/baja/{id}")
 	public String darBaja(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -51,6 +69,13 @@ public class AutorControlador {
 		}
 	}
 	
+	/**
+	 * permite dar de alta el autor que se haya seleccionado(coloca el valor de alta en true)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/alta/{id}")
 	public String darAlta(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -62,6 +87,12 @@ public class AutorControlador {
 		}
 	}
 	
+	/**
+	 * carga un form con los datos del autor para que estos puedan ser cambiados
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/modificar/{id}")
 	public String modificarAutor(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -75,6 +106,13 @@ public class AutorControlador {
 		return "modificarae.html";
 	}
 	
+	/**
+	 * utiliza el servicio con los datos modificados para cambiarlos en la base de datos
+	 * @param modelo
+	 * @param id
+	 * @param nombre
+	 * @return
+	 */
 	@PostMapping("/modificar/hecho")
 	public String modAutor(ModelMap modelo, @RequestParam String id,@RequestParam String nombre) {
 		try {

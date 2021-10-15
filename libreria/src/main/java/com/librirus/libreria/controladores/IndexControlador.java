@@ -26,11 +26,20 @@ public class IndexControlador {
 	@Autowired
 	LibroServicio libroServicio;
 	
+	/**
+	 * devuelve el un modelAndView con el html de index
+	 * @return modelAndView con index.html
+	 */
 	@GetMapping("/")
 	public ModelAndView mostrarHome() {
 		return new ModelAndView("index");
 	}
 	
+	/**
+	 * devuelve el un modelAndView con el html de autores al cual se le cargan todos los autores de la base de datos
+	 * para que estos puedan ser visualizados por los usuarios
+	 * @return modelAndView con autores.html
+	 */
 	@GetMapping("/autores")
 	public ModelAndView mostrarAutores() {
 		try {
@@ -45,6 +54,11 @@ public class IndexControlador {
 		}
 	}
 	
+	/**
+	 * devuelve el un modelAndView con el html de editoriales al cual se le cargan todos las editoriales de la base
+	 * de datos para que estos puedan ser visualizados por los usuarios
+	 * @return modelAndView con editoriales.html
+	 */
 	@GetMapping("/editoriales")
 	public ModelAndView mostrarEditoriales() {
 		try {
@@ -59,6 +73,11 @@ public class IndexControlador {
 		}
 	}
 	
+	/**
+	 * devuelve el un modelAndView con el html de libros al cual se le cargan todos los libros de la base de datos
+	 * para que estos puedan ser visualizados por los usuarios
+	 * @return modelAndView con libros.html
+	 */
 	@GetMapping("/libros")
 	public ModelAndView mostrarlibros() {
 		try {

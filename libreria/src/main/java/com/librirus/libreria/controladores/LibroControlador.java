@@ -30,6 +30,11 @@ public class LibroControlador {
 	@Autowired
 	EditorialServicio editorialServicio;
 
+	/**
+	 * devuelve el html "agregar-libro" que contiene un form para colocar los datos del libro
+	 * @param modelo
+	 * @return
+	 */
 	@GetMapping("/agregar-libro")
 	public String vistaAgregar(ModelMap modelo) {
 		List<Autor> autores = autorServicio.buscarTodos();
@@ -39,6 +44,19 @@ public class LibroControlador {
 		return "agregar-libro.html";
 	}
 
+	/**
+	 * recibe los datos del form para enviarlos al servicio y este se encargue de guardar el libro,
+	 * en caso de un error muestra nuevamente la pagina con un mensaje de error
+	 * @param modelo
+	 * @param isbn
+	 * @param nombreLibro
+	 * @param anio
+	 * @param ejemplares
+	 * @param ejemplaresPrestados
+	 * @param autor
+	 * @param editorial
+	 * @return
+	 */
 	@PostMapping("/registrar")
 	public String agregar(ModelMap modelo, @RequestParam(required = false) Long isbn, @RequestParam String nombreLibro,
 			@RequestParam(required = false) Integer anio, @RequestParam(required = false) Integer ejemplares,
@@ -66,6 +84,13 @@ public class LibroControlador {
 		}
 	}
 
+	/**
+	 * permite dar de baja el autor que se haya seleccionado(coloca el valor de alta en false)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/baja/{id}")
 	public String darBaja(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -79,6 +104,13 @@ public class LibroControlador {
 		}
 	}
 
+	/**
+	 * permite dar de alta el libro que se haya seleccionado(coloca el valor de alta en true)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/alta/{id}")
 	public String darAlta(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -90,6 +122,12 @@ public class LibroControlador {
 		}
 	}
 
+	/**
+	 * carga un form con los datos del libro para que estos puedan ser cambiados
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/modificar/{id}")
 	public String modificaLibro(ModelMap modelo, @PathVariable String id) {
 		try {
@@ -115,6 +153,19 @@ public class LibroControlador {
 		}
 	}
 
+	/**
+	 * utiliza el servicio con los datos modificados para cambiarlos en la base de datos
+	 * @param modelo
+	 * @param id
+	 * @param isbn
+	 * @param nombreLibro
+	 * @param anio
+	 * @param ejemplares
+	 * @param ejemplaresPrestados
+	 * @param autor
+	 * @param editorial
+	 * @return
+	 */
 	@PostMapping("/modificar/{id}")
 	public String modificarHecho(ModelMap modelo, @RequestParam String id, @RequestParam(required = false) Long isbn,
 			@RequestParam String nombreLibro, @RequestParam(required = false) Integer anio,

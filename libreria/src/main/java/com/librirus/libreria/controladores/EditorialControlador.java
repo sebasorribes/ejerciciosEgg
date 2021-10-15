@@ -23,12 +23,22 @@ public class EditorialControlador {
 
 	@Autowired
 	EditorialServicio editorialServicio;
-	
+	/**
+	 * devuelve el html "agregar-editorial" que contiene un form para colocar los datos de la editorial
+	 * @return
+	 */
 	@GetMapping("/agregar-editorial")
 	public String formAddEditorial() {
 		return "agregar-editorial.html";
 	}
 	
+	/**
+	 * recibe los datos del form para enviarlos al servicio y este se encargue de guardar la editorial
+	 * en caso de un error muestra nuevamente la pagina con un mensaje de error
+	 * @param modelo
+	 * @param nombreEditorial
+	 * @return html
+	 */
 	@PostMapping("/registrar")
 	public String guardarEditorial(ModelMap modelo,@RequestParam String nombreEditorial) {
 		try {
@@ -40,6 +50,13 @@ public class EditorialControlador {
 		}
 	}
 	
+	/**
+	 * permite dar de baja la editorial que se haya seleccionado(coloca el valor de alta en false)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/baja/{id}")
 	public String darBaja(ModelMap modelo,@PathVariable String id) {
 		try {
@@ -53,6 +70,13 @@ public class EditorialControlador {
 		}
 	}
 	
+	/**
+	 * permite dar de alta la editorial que se haya seleccionado(coloca el valor de alta en true)
+	 * en caso de error carga nuevamente la pagina con el mismo html y le agrega un mensaje de error
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/alta/{id}")
 	public String darAlta(ModelMap modelo,@PathVariable String id){
 		try {
@@ -66,6 +90,12 @@ public class EditorialControlador {
 		}
 	}
 	
+	/**
+	 * carga un form con los datos de la editorial para que estos puedan ser cambiados
+	 * @param modelo
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/modificar/{id}")
 	public String vistamodificar(ModelMap modelo,@PathVariable String id) {
 		try {
@@ -79,6 +109,13 @@ public class EditorialControlador {
 		return "modificarae.html";
 	}
 	
+	/**
+	 * utiliza el servicio con los datos modificados para cambiarlos en la base de datos
+	 * @param modelo
+	 * @param id
+	 * @param nombre
+	 * @return
+	 */
 	@PostMapping("/modificar/hecho")
 	public String modificar(ModelMap modelo,@RequestParam String id,@RequestParam String nombre) {
 		try {

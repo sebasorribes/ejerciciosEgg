@@ -12,34 +12,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}"  style="color: #f91351;">Home</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link active" aria-current="page" th:href="@{/editoriales}"  style="color: #f91351;">Editoriales</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/autores}"  style="color: #f91351;">Autores</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/libros}"  style="color: #f91351;">Libros</a>
-					</li>
-					<li class="nav-item">
-            			<a class="nav-link" th:href="@{/clientes}"  style="color: #f91351;">Clientes</a>
-         		    </li>
-         		    <li class="nav-item">
-            			<a class="nav-link" th:href="@{/prestamos}"  style="color: #f91351;">Prestamos</a>
-         		    </li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+	<nav th:replace="layouts/nav-bar :: nav-bar-light">	</nav>
 
 	<div class="container">
 		<h2>Ingresar editorial</h2>
